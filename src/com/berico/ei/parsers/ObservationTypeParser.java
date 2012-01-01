@@ -5,12 +5,12 @@ import static com.berico.ei.parsers.EncodedWxElementPatternMatchers.*;
 
 public class ObservationTypeParser implements EncodedWxElementParser {
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		return isObservationTypeElement(context.getCurrentElement());
 	}
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		

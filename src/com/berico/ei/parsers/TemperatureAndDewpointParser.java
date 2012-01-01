@@ -8,13 +8,13 @@ import org.jscience.physics.amount.Amount;
 
 public class TemperatureAndDewpointParser implements EncodedWxElementParser {
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		
 		return isTemperatureDewPointElement(context.getCurrentElement());
 	}
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		

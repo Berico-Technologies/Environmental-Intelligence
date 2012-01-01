@@ -11,13 +11,13 @@ public class SeaLevelPressureParser implements EncodedWxElementParser {
 
 	public static double SLP_CUTOVER_THRESHOLD = 49.9;
 	
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		
 		return isSeaLevelPressureElement(context.getCurrentElement());
 	}
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		

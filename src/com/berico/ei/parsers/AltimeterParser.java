@@ -8,13 +8,12 @@ import org.jscience.physics.amount.Amount;
 
 public class AltimeterParser implements EncodedWxElementParser {
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		
 		return isAlimeterElement(context.getCurrentElement());
 	}
 
-	@Override
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 

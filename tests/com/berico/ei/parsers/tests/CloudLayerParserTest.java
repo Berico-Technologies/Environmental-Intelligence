@@ -106,7 +106,6 @@ public class CloudLayerParserTest extends EncodedWxElementParserBaseTestCase {
 		
 		context.foreachElement(new ContextHandler() {
 			
-			@Override
 			public void handleElement(EncodedWxStringParseContext context) {
 				
 				if(getParser().canParseCurrentElement(context)){

@@ -17,7 +17,7 @@ public class StationIdentificationParser implements EncodedWxElementParser {
 
 	public static final Map<String, Station> icaoToStationMap = createStationMap();
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		
@@ -28,13 +28,12 @@ public class StationIdentificationParser implements EncodedWxElementParser {
 		}
 	}
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		if(context.hasNextElement()){
 			return isPotentialIcaoElement(context.getCurrentElement()) 
 					&& isAfterCurrentElement(context.getCurrentPosition(), context.getElements(), 
 							new Predicate(){
-								@Override
 								public boolean isMatch(String testElement) {
 									return isDateTimeElement(testElement);
 								}});

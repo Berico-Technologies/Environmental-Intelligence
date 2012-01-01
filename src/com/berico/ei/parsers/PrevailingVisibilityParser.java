@@ -11,13 +11,13 @@ import com.berico.ei.Visibility;
 
 public class PrevailingVisibilityParser implements EncodedWxElementParser {
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		
 		return isPrevailingVisibilityElement(context.getCurrentElement(), context.getNextElement());
 	}
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		

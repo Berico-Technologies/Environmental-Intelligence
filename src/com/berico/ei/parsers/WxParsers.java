@@ -16,7 +16,6 @@ public class WxParsers {
 		
 		context.foreachElement(new ContextHandler(){
 
-			@Override
 			public void handleElement(EncodedWxStringParseContext context) {
 				
 				for(EncodedWxElementParser parser : metarParserChain){

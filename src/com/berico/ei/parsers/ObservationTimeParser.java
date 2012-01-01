@@ -8,7 +8,7 @@ import org.joda.time.DateTimeZone;
 
 public class ObservationTimeParser implements EncodedWxElementParser {
 
-	@Override
+
 	public void performParse(EncodedWxStringParseContext context) throws EncodedWxElementParseException {
 		
 		String observationTime = context.getCurrentElement();
@@ -35,7 +35,7 @@ public class ObservationTimeParser implements EncodedWxElementParser {
 		}
 	}
 
-	@Override
+
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		return isDateTimeElement(context.getCurrentElement());
 	}

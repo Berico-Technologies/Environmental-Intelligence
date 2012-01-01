@@ -4,6 +4,44 @@
   <artifactId>EnvironmentalIntelligence</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Environmental-Intelligence</name>
+  <repositories>
+  	<repository>
+  		<id>geotoolkit</id>
+		<name>Geotoolkit repository</name>
+		<url>http://maven.geotoolkit.org</url>
+  	</repository>
+  	<repository>
+  		<id>jcurl</id>
+  		<name>JCurl Library</name>
+  		<url>http://jcurl.berlios.de/m2/repo</url>
+  	</repository>
+  </repositories>
   <dependencies>
+  	<dependency>
+  		<groupId>org.jscience</groupId>
+  		<artifactId>jscience</artifactId>
+  		<version>4.3.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>javolution</groupId>
+  		<artifactId>javolution</artifactId>
+  		<version>5.4.5</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.opengis</groupId>
+  		<artifactId>geoapi-pending</artifactId>
+  		<version>2.3-RC1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.4</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<version>2.0</version>
+	</dependency>
   </dependencies>
 </project>
