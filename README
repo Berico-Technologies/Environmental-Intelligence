@@ -1,0 +1,5 @@
+Environmental Intelligence
+
+This is a project to exploit environmental data and apply it to intelligence gathering and operational efforts.
+
+Currently, the project includes a simple model for Observations and a parser that handles METAR encoded strings.  The project will be expanded to handle TAFS, Upper Air (RAOB), Synoptic Observations, etc.
