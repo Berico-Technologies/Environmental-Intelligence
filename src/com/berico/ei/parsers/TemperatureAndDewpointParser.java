@@ -23,8 +23,8 @@ public class TemperatureAndDewpointParser implements EncodedWxElementParser {
 		int temperature = parseTempElement(parts[0]);
 		int dewpoint = parseTempElement(parts[1]);
 		
-		context.getObservation().setAirTemperature(Amount.valueOf(temperature, SI.CELSIUS));
-		context.getObservation().setDewPoint(Amount.valueOf(dewpoint, SI.CELSIUS));
+		context.getObservation().getTemperatures().setObservedTemperature(Amount.valueOf(temperature, SI.CELSIUS));
+		context.getObservation().getTemperatures().setDewpoint(Amount.valueOf(dewpoint, SI.CELSIUS));
 	}
 	
 	protected static int parseTempElement(String element){

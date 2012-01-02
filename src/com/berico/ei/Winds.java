@@ -5,6 +5,11 @@ import javax.measure.quantity.Angle;
 import javax.measure.quantity.Velocity;
 import javax.measure.unit.NonSI;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
+import static com.berico.ei.ConversionUtils.*;
+
 public class Winds {
 
 	protected boolean isVariableDirection = false;
@@ -78,23 +83,13 @@ public class Winds {
 	@Override
 	public String toString() {
 		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Winds:").append("Direction: ");
-		
-		if(isVariable()){
-			sb.append("Variable");
-		} else {
-			sb.append(this.getWindDirection().longValue(NonSI.DEGREE_ANGLE)).append(" deg");
-		}
-		
-		sb.append(" ").append(this.getWindSpeed().longValue(NonSI.KNOT)).append(" knots");
-		
-		if(hasGusts()){
-			sb.append(" gusting ").append(this.getWindGust().longValue(NonSI.KNOT)).append(" knots\n");
-		}
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Direction", toDeg(getWindDirection()))
+			.append("Is Variable", isVariable())
+			.append("Speed", toKnots(getWindSpeed()))
+			.append("Has Gusts", hasGusts())
+			.append("Gust", toKnots(getWindGust()))
+			.toString();
 	}
 	
 	

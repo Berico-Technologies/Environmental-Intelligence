@@ -7,8 +7,6 @@ import javax.measure.unit.SI;
 
 import org.jscience.physics.amount.Amount;
 
-import com.berico.ei.Visibility;
-
 public class PrevailingVisibilityParser implements EncodedWxElementParser {
 
 
@@ -20,12 +18,6 @@ public class PrevailingVisibilityParser implements EncodedWxElementParser {
 
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
-		
-		if(context.getObservation().getVisibility() == null){
-			
-			context.getObservation().setVisibility(new Visibility());
-			
-		} 
 		
 		if(context.getCurrentElement().matches(PREVAILING_VISIBILITY_METERS)){
 			

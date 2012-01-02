@@ -1,9 +1,11 @@
 package com.berico.ei;
 
-import javax.measure.unit.NonSI;
-
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jscience.geography.coordinates.Height;
 import org.jscience.geography.coordinates.LatLong;
+
+import static com.berico.ei.ConversionUtils.*;
 
 public class Station {
 
@@ -45,6 +47,14 @@ public class Station {
 		this.stationCoordinates = stationCoordinates;
 	}
 	
+	public double getLatitude(){
+		return this.getStationCoordinates().getCoordinates()[0];
+	}
+	
+	public double getLongitude(){
+		return this.getStationCoordinates().getCoordinates()[1];
+	}
+	
 	public Height getStationElevation() {
 		return stationElevation;
 	}
@@ -56,15 +66,15 @@ public class Station {
 	@Override
 	public String toString() {
 		
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("Station: ").append(this.getStationName()).append("\n");
-		sb.append("\tICAO: ").append(this.getIcaoStationIdentifier()).append("\n");
-		sb.append("\tWMO: ").append(this.getWmoStationIdentifier()).append("\n");
-		sb.append("\tElevation: ").append(this.getStationElevation().doubleValue(NonSI.FOOT)).append("\n");
-		sb.append("\tLat: ").append(this.getStationCoordinates().getCoordinates()[0]).append("\n");
-		sb.append("\tLon: ").append(this.getStationCoordinates().getCoordinates()[1]).append("\n");
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Name", this.getStationName())
+			.append("ICAO", this.getIcaoStationIdentifier())
+			.append("WMO", this.getWmoStationIdentifier())
+			.append("Elevation", toFt(this.getStationElevation()))
+			.append("Latitude", this.getLatitude())
+			.append("Longitude", this.getLongitude())
+			.toString();
 	}
+	
+
 }

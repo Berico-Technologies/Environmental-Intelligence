@@ -34,7 +34,8 @@ public class EncodedWxStringParseContext {
 	protected Observation observation = null;
 	
 	protected int observationYear = Calendar.getInstance().get(Calendar.YEAR);
-	protected int observationMonth = Calendar.getInstance().get(Calendar.MONTH);
+	//Java is stupid and uses array indexes for months of year (so January is month zero)
+	protected int observationMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
 	
 	public String getCurrentElement() {
 		return currentElement;

@@ -9,8 +9,6 @@ import javax.measure.unit.NonSI;
 
 import org.jscience.physics.amount.Amount;
 
-import com.berico.ei.Winds;
-
 public class WindsParser implements EncodedWxElementParser {
 
 
@@ -22,11 +20,6 @@ public class WindsParser implements EncodedWxElementParser {
 
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
-		
-		if(context.getObservation().getWinds() == null){
-			
-			context.getObservation().setWinds(new Winds());
-		}
 		
 		String directionStr = context.getCurrentElement().substring(0, 3);
 		

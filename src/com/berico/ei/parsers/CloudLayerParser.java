@@ -6,7 +6,6 @@ import javax.measure.unit.NonSI;
 
 import org.jscience.geography.coordinates.Height;
 
-import com.berico.ei.SkyCondition;
 import com.berico.ei.CloudLayer;
 import com.berico.ei.SkyCoverage;
 
@@ -21,11 +20,6 @@ public class CloudLayerParser implements EncodedWxElementParser {
 
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
-		
-		if(context.getObservation().getSkyCondition() == null){
-			
-			context.getObservation().setSkyCondition(new SkyCondition());
-		}
 		
 		String coverageStr = null;
 		

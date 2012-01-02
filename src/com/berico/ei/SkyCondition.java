@@ -6,6 +6,9 @@ import java.util.TreeMap;
 
 import javax.measure.unit.NonSI;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 public class SkyCondition {
 
 	protected CloudLayer ceiling = null;
@@ -62,21 +65,12 @@ public class SkyCondition {
 	@Override
 	public String toString() {
 		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Sky Condition: \n");
-		sb.append("\tIs Clear?: ").append(isClear()).append("\n");
-		sb.append("\tHas Ceiling?: ").append(hasCeiling()).append("\n");
-		
-		if(!isClear()){
-			
-			for(CloudLayer layer : getLayers()){
-				sb.append("\t").append(layer).append("\n");
-			}
-			
-		}
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Is Clear", isClear())	
+			.append("Has Ceiling", hasCeiling())
+			.append("Ceiling", getCeiling())
+			.append("Layers", getLayers().toArray())
+			.toString();
 	}
 	
 }

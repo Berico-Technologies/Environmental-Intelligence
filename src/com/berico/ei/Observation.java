@@ -1,10 +1,11 @@
 package com.berico.ei;
 
 import javax.measure.quantity.Pressure;
-import javax.measure.quantity.Temperature;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
 import org.jscience.physics.amount.Amount;
 
@@ -31,15 +32,13 @@ public class Observation {
 	
 	protected DateTime timeOfObservation = null;
 	
-	protected Winds winds = null;
+	protected Winds winds = new Winds();
 	
-	protected Visibility visibility = null;
+	protected Visibility visibility = new Visibility();
 	
-	protected SkyCondition skyCondition = null;
+	protected SkyCondition skyCondition = new SkyCondition();
 	
-	protected Amount<Temperature> airTemperature = null;
-	
-	protected Amount<Temperature> dewPoint = null;
+	protected Temperatures temperatures = new Temperatures();
 	
 	protected Amount<Pressure> altimeter = null;
 	
@@ -94,20 +93,12 @@ public class Observation {
 		this.skyCondition = skyCondition;
 	}
 
-	public Amount<Temperature> getAirTemperature() {
-		return airTemperature;
+	public Temperatures getTemperatures(){
+		return this.temperatures;
 	}
-
-	public void setAirTemperature(Amount<Temperature> airTemperature) {
-		this.airTemperature = airTemperature;
-	}
-
-	public Amount<Temperature> getDewPoint() {
-		return dewPoint;
-	}
-
-	public void setDewPoint(Amount<Temperature> dewPoint) {
-		this.dewPoint = dewPoint;
+	
+	public void setTemperatures(Temperatures temperatures){
+		this.temperatures = temperatures;
 	}
 
 	public Amount<Pressure> getAltimeter() {
@@ -129,22 +120,16 @@ public class Observation {
 	@Override
 	public String toString() {
 		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Weather Observation: ").append(this.getTimeOfObservation()).append("\n");
-		sb.append(this.getObservingStation());
-		sb.append("\tObservation Type: ").append(this.getObservationType()).append("\n");
-		sb.append(this.getWinds());
-		sb.append(this.getVisibility());
-		sb.append(this.getSkyCondition());
-		
-		sb.append("Temperature: ").append(this.getAirTemperature().doubleValue(SI.CELSIUS)).append(" C\n");
-		sb.append("Dew Point: ").append(this.getDewPoint().doubleValue(SI.CELSIUS)).append(" C\n");
-		sb.append("Altimeter: ").append(this.getAltimeter().doubleValue(NonSI.INCH_OF_MERCURY)).append(" in\n");
-		sb.append("Sea Level Pressure: ").append(this.getSeaLevelPressure().doubleValue(SI.MILLI(NonSI.BAR))).append(" mb\n");
-		
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Time of Observation", this.getTimeOfObservation())
+			.append("Observing Station", this.getObservingStation())
+			.append("Winds", this.getWinds())
+			.append("Visibility", this.getVisibility())
+			.append("Sky Condition", this.getSkyCondition())
+			.append("Temperatures", this.getTemperatures())
+			.append("Altimeter", this.getAltimeter().doubleValue(NonSI.INCH_OF_MERCURY))
+			.append("Sea Level Pressure", this.getSeaLevelPressure().doubleValue(SI.MILLI(NonSI.BAR)))
+			.toString();
 	}
 	
 }

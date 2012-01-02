@@ -6,15 +6,17 @@ import java.util.List;
 import javax.measure.Measurable;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import javax.measure.unit.NonSI;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
+import static com.berico.ei.ConversionUtils.*;
 
 public class Visibility {
 
 	protected Measurable<Length> prevailingVisibility = null;
 	
 	protected List<SectorVisibility> sectorVisibilities = new ArrayList<SectorVisibility>();
-	
-	
 	
 	public Measurable<Length> getPrevailingVisibility() {
 		return prevailingVisibility;
@@ -42,10 +44,8 @@ public class Visibility {
 	@Override
 	public String toString() {
 		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Visibility: ").append(this.prevailingVisibility.doubleValue(NonSI.MILE)).append(" miles\n");
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Prevailing", toMi(getPrevailingVisibility()))
+			.toString();
 	}
 }

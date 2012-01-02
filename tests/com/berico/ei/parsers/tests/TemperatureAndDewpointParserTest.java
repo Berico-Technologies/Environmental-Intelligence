@@ -62,8 +62,11 @@ public class TemperatureAndDewpointParserTest extends
 			fail(e.getMessage());
 		}
 		
-		assertEquals(expectedTemp, context.getObservation().getAirTemperature().longValue(SI.CELSIUS), 0d);
-		assertEquals(expectedDewpoint, context.getObservation().getDewPoint().longValue(SI.CELSIUS), 0d);
+		assertEquals(expectedTemp, context.getObservation()
+				.getTemperatures().getAmbientAirTemperature().longValue(SI.CELSIUS), 0d);
+		
+		assertEquals(expectedDewpoint, context.getObservation()
+				.getTemperatures().getDewpoint().longValue(SI.CELSIUS), 0d);
 	}
 	
 	@Test

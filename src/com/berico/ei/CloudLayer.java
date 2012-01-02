@@ -1,10 +1,10 @@
 package com.berico.ei;
 
-import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
-
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.jscience.geography.coordinates.Height;
 
+import static com.berico.ei.ConversionUtils.*;
 
 public class CloudLayer {
 	
@@ -24,22 +24,13 @@ public class CloudLayer {
 		return this.layerBaseHeight;
 	}
 	
-	public double getLayerBaseHeightInFeet(){
-		return this.layerBaseHeight.doubleValue(NonSI.FOOT);
-	}
-	
-	public double getLayerBaseHeightInMeters(){
-		return this.layerBaseHeight.doubleValue(SI.METER);
-	}
-	
 	@Override
 	public String toString(){
 		
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append("Layer: ").append(this.layerCoverage).append(" ").append(this.layerBaseHeight.longValue(NonSI.FOOT)).append(" ft");
-		
-		return sb.toString();
+		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+			.append("Coverage", getCoverage())
+			.append("Height", toFt(getLayerBaseHeight()))
+			.toString();
 	}
 	
 	
@@ -74,16 +65,16 @@ public class CloudLayer {
 		return true;
 	}
 
-
 	public static boolean sameHeight(Height one, Height two){
-		return one.longValue(NonSI.FOOT) == two.longValue(NonSI.FOOT);
+		return toFt(one) == toFt(two);
 	}
 	
 	public static boolean isLower(CloudLayer layer1, CloudLayer layer2){
 		
-		long layer1Height = layer1.getLayerBaseHeight().longValue(NonSI.FOOT);
-		long layer2Height = layer2.getLayerBaseHeight().longValue(NonSI.FOOT);
+		double layer1Height = toFt(layer1.getLayerBaseHeight());
+		double layer2Height = toFt(layer2.getLayerBaseHeight());
 		
 		return layer1Height < layer2Height;
 	}
+	
 }
