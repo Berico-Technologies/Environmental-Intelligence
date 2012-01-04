@@ -24,6 +24,11 @@ public class ConversionUtils {
 		return temp.doubleValue(NonSI.FAHRENHEIT);
 	}
 	
+	public static double toIn(Measurable<Length> length){
+		if(length == null){ return Double.MIN_VALUE; }
+		return length.doubleValue(NonSI.INCH);
+	}
+	
 	public static double toFt(Height height){
 		if(height == null){ return Double.MIN_VALUE; }
 		return height.doubleValue(NonSI.FOOT);
@@ -92,6 +97,10 @@ public class ConversionUtils {
 	public static double toMb(Measurable<Pressure> pressure){
 		if(pressure == null) { return Double.MIN_VALUE; }
 		return pressure.doubleValue(SI.MILLI(NonSI.BAR));
+	}
+	
+	public static Measurable<Length> fromIn(double length){
+		return Amount.valueOf(length, NonSI.INCH);
 	}
 	
 	public static Measurable<Temperature> fromC(double temp){

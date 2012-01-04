@@ -20,6 +20,8 @@ public final class EncodedWxElementPatternMatchers {
 	
 	public static final String MAX_MIN_TEMPERATURE_GROUP_PATTERN = "^[1-2][0-1][0-9]{3}$";
 	
+	public static final String ONE_THREE_SIX_TWENTY_FOUR_HOUR_PRECIP_GROUP_PATTERN = "^[6-7P][0-9]{4}$";
+	
 	public static final String ALTIMETER_PATTERN = "A[0-9]{4}";
 	
 	public static final String SLP_PATTERN = "SLP[0-9]{3}";
@@ -84,6 +86,22 @@ public final class EncodedWxElementPatternMatchers {
 	public static boolean isMaxTemperatureGroup(String element){
 		
 		return element.startsWith("1") && isMaxOrMinTemperatureGroup(element);
+	}
+	
+	public static boolean isPrecipGroup(String element){
+		return element.matches(ONE_THREE_SIX_TWENTY_FOUR_HOUR_PRECIP_GROUP_PATTERN);
+	}
+	
+	public static boolean isHourlyPrecipGroup(String element){
+		return element.startsWith("P") && isPrecipGroup(element);
+	}
+	
+	public static boolean isThreeOrSixHourPrecipGroup(String element){
+		return element.startsWith("6") && isPrecipGroup(element);
+	}
+	
+	public static boolean isTwentyFourHourPrecipGroup(String element){
+		return element.startsWith("7") && isPrecipGroup(element);
 	}
 	
 	public static boolean isMinTemperatureGroup(String element){

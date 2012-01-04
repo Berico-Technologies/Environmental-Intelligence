@@ -36,6 +36,8 @@ public class Observation {
 	protected Temperatures temperatures = new Temperatures();
 	
 	protected Pressures pressures = new Pressures();
+	
+	protected Precipitation precipitation = new Precipitation();
 
 	
 	public Station getObservingStation() {
@@ -101,18 +103,55 @@ public class Observation {
 	public void setPressures(Pressures pressures) {
 		this.pressures = pressures;
 	}
+	
+	public Precipitation getPrecipitation() {
+		return precipitation;
+	}
 
+	public void setPrecipitation(Precipitation precipitation) {
+		this.precipitation = precipitation;
+	}
+	
+	public boolean isThreeHourly(){
+		switch(getTimeOfObservation().getHourOfDay()){
+			case 3:
+			case 9:
+			case 15:
+			case 21: return true;
+			default: return false;
+		}
+	}
+
+	public boolean isSixHourly(){
+		switch(getTimeOfObservation().getHourOfDay()){
+			case 0:
+			case 6:
+			case 12:
+			case 18: return true;
+			default: return false;
+		}
+	}
+	
+	public boolean isTwelveHourly(){
+		return getTimeOfObservation().getHourOfDay() == 12;
+	}
+	
+	public boolean isTwentyFourHourly(){
+		return getTimeOfObservation().getHourOfDay() == 00;
+	}
+	
 	@Override
 	public String toString() {
 		
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-			.append("Time of Observation", this.getTimeOfObservation())
-			.append("Observing Station", this.getObservingStation())
-			.append("Winds", this.getWinds())
-			.append("Visibility", this.getVisibility())
-			.append("Sky Condition", this.getSkyCondition())
-			.append("Temperatures", this.getTemperatures())
-			.append("Pressures", this.getPressures())
+			.append("Time of Observation", getTimeOfObservation())
+			.append("Observing Station", getObservingStation())
+			.append("Winds", getWinds())
+			.append("Visibility", getVisibility())
+			.append("Sky Condition", getSkyCondition())
+			.append("Temperatures", getTemperatures())
+			.append("Pressures", getPressures())
+			.append("Precipitation", getPrecipitation())
 			.toString();
 	}
 	

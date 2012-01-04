@@ -12,4 +12,9 @@ public class ParserUtils {
 		return parsedTemperature;
 	}
 	
+	public static double parseEncodedPrecip(String precip){
+		
+		return Integer.parseInt(precip) * 0.01d;
+	}
+	
 }
