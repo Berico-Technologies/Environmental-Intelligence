@@ -21,7 +21,7 @@ public class AltimeterParser implements EncodedWxElementParser {
 		
 		double altimeter = parsedAltimeter * 0.01;
 		
-		context.getObservation().setAltimeter(Amount.valueOf(altimeter, NonSI.INCH_OF_MERCURY));
+		context.getObservation().getPressures().setAltimeter(Amount.valueOf(altimeter, NonSI.INCH_OF_MERCURY));
 		
 	}
 

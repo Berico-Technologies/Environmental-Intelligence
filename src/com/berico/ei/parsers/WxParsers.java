@@ -46,6 +46,8 @@ public class WxParsers {
 		parserChain.add(new TemperatureAndDewpointParser());
 		parserChain.add(new AltimeterParser());
 		parserChain.add(new SeaLevelPressureParser());
+		parserChain.add(new TemperatureAndDewpointGroupParser());
+		parserChain.add(new MaxAndMinTemperatureGroupParser());
 		
 		return parserChain;
 	}

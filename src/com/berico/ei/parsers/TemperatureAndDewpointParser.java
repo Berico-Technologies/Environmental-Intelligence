@@ -1,30 +1,47 @@
 package com.berico.ei.parsers;
 
+import static com.berico.ei.ConversionUtils.*;
 import static com.berico.ei.parsers.EncodedWxElementPatternMatchers.*;
-
-import javax.measure.unit.SI;
-
-import org.jscience.physics.amount.Amount;
 
 public class TemperatureAndDewpointParser implements EncodedWxElementParser {
 
 
 	public boolean canParseCurrentElement(EncodedWxStringParseContext context) {
 		
-		return isTemperatureDewPointElement(context.getCurrentElement());
+		return isTemperatureDewpointElement(context.getCurrentElement());
 	}
 
 
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		
+		// If the temperature has already been set by another parser
+		// (e.g.: hourly temperature and dewpoint group), don't continue
+		// executing.
+		if(context
+			.getObservation()
+			.getTemperatures()
+			.getAmbientAirTemperature() != null){
+			
+			return;
+		}
+		
 		String[] parts = context.getCurrentElement().split("/");
 		
 		int temperature = parseTempElement(parts[0]);
 		int dewpoint = parseTempElement(parts[1]);
 		
-		context.getObservation().getTemperatures().setObservedTemperature(Amount.valueOf(temperature, SI.CELSIUS));
-		context.getObservation().getTemperatures().setDewpoint(Amount.valueOf(dewpoint, SI.CELSIUS));
+		context
+			.getObservation()
+			.getTemperatures()
+			.setAmbientTemperature(
+				fromC(temperature));
+		
+		context
+			.getObservation()
+			.getTemperatures()
+			.setDewpoint(
+				fromC(dewpoint));
 	}
 	
 	protected static int parseTempElement(String element){

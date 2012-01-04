@@ -1,12 +1,12 @@
 package com.berico.ei.parsers.tests;
 
-import static org.junit.Assert.*;
-
-import javax.measure.unit.SI;
+import static com.berico.ei.ConversionUtils.toC;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.TemperatureAndDewpointParser;
@@ -51,22 +51,19 @@ public class TemperatureAndDewpointParserTest extends
 	
 	public void assertTempAndDewpoint(double expectedTemp, double expectedDewpoint, String encodedElement){
 		
-		EncodedWxStringParseContext context = this.createContext(encodedElement);
+		EncodedWxStringParseContext context = assertParse(encodedElement);
 		
-		try {
-			
-			getParser().performParse(context);
-			
-		} catch (EncodedWxElementParseException e) {
-			
-			fail(e.getMessage());
-		}
+		assertEquals(expectedTemp, 
+				toC(context
+					.getObservation()
+					.getTemperatures()
+					.getAmbientAirTemperature()), 0d);
 		
-		assertEquals(expectedTemp, context.getObservation()
-				.getTemperatures().getAmbientAirTemperature().longValue(SI.CELSIUS), 0d);
-		
-		assertEquals(expectedDewpoint, context.getObservation()
-				.getTemperatures().getDewpoint().longValue(SI.CELSIUS), 0d);
+		assertEquals(expectedDewpoint, 
+				toC(context
+					.getObservation()
+					.getTemperatures()
+					.getDewpoint()), 0d);
 	}
 	
 	@Test

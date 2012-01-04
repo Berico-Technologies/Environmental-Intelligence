@@ -9,7 +9,6 @@ import javax.measure.unit.Unit;
 
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.PrevailingVisibilityParser;
@@ -70,14 +69,7 @@ public class PrevailingVisibilityParserTest extends
 	public void assertVisibilityConditions(
 			String visString, double expectedDistance, Unit<Length> measurement){
 		
-		EncodedWxStringParseContext context = this.createContext(visString);
-		
-		try {
-			getParser().performParse(context);
-		} catch (EncodedWxElementParseException e) {
-			
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse(visString);
 		
 		assertEquals(expectedDistance, 
 				context.getObservation()

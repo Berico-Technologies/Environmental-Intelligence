@@ -6,7 +6,6 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.ObservationTimeParser;
@@ -56,16 +55,7 @@ public class ObservationTimeParserTest extends
 	@Test
 	public void parser_correctly_extracts_the_time_from_encoded_observation() {
 		
-		EncodedWxStringParseContext context = this.createContext("251223Z");
-		
-		try {
-			
-			getParser().performParse(context);
-			
-		} catch (EncodedWxElementParseException e) {
-			
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse("251223Z");
 		
 		DateTime dt = context.getObservation().getTimeOfObservation();
 		

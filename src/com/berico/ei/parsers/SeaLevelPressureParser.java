@@ -34,7 +34,7 @@ public class SeaLevelPressureParser implements EncodedWxElementParser {
 			slpFullValue = slpPartial + 1000;
 		}
 		
-		context.getObservation().setSeaLevelPressure(Amount.valueOf(slpFullValue, SI.MILLI(NonSI.BAR)));
+		context.getObservation().getPressures().setSeaLevelPressure(Amount.valueOf(slpFullValue, SI.MILLI(NonSI.BAR)));
 	}
 
 }

@@ -14,7 +14,11 @@ public final class EncodedWxElementPatternMatchers {
 	
 	public static final String WINDS_PATTERN = "((VRB0[1-6])|(00000)|([0-2][0-9]0|3[0-6]0)[0-9]{2,3}(G[0-9]{2,3})?)KT";
 	
-	public static final String TEMPERATURE_DEW_POINT_PATTERN = "^([M]?[0-9]{2}[/][M]?[0-9]{2})$";
+	public static final String TEMPERATURE_DEWPOINT_PATTERN = "^([M]?[0-9]{2}[/][M]?[0-9]{2})$";
+	
+	public static final String TEMPERATURE_DEWPOINT_GROUP_PATTERN = "T[0-1][0-9]{3}[0-1][0-9]{3}";
+	
+	public static final String MAX_MIN_TEMPERATURE_GROUP_PATTERN = "^[1-2][0-1][0-9]{3}$";
 	
 	public static final String ALTIMETER_PATTERN = "A[0-9]{4}";
 	
@@ -62,9 +66,29 @@ public final class EncodedWxElementPatternMatchers {
 		return element.matches(WINDS_PATTERN);
 	}
 	
-	public static boolean isTemperatureDewPointElement(String element){
+	public static boolean isTemperatureDewpointElement(String element){
 		
-		return element.matches(TEMPERATURE_DEW_POINT_PATTERN);
+		return element.matches(TEMPERATURE_DEWPOINT_PATTERN);
+	}
+	
+	public static boolean isTemperatureDewpointGroupElement(String element){
+		
+		return element.matches(TEMPERATURE_DEWPOINT_GROUP_PATTERN);
+	}
+	
+	public static boolean isMaxOrMinTemperatureGroup(String element){
+		
+		return element.matches(MAX_MIN_TEMPERATURE_GROUP_PATTERN);
+	}
+	
+	public static boolean isMaxTemperatureGroup(String element){
+		
+		return element.startsWith("1") && isMaxOrMinTemperatureGroup(element);
+	}
+	
+	public static boolean isMinTemperatureGroup(String element){
+		
+		return element.startsWith("2") && isMaxOrMinTemperatureGroup(element);
 	}
 	
 	public static boolean isAlimeterElement(String element){

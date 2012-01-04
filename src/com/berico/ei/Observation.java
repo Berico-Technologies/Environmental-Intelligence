@@ -1,13 +1,8 @@
 package com.berico.ei;
 
-import javax.measure.quantity.Pressure;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
-import org.jscience.physics.amount.Amount;
 
 public class Observation {
 
@@ -40,9 +35,7 @@ public class Observation {
 	
 	protected Temperatures temperatures = new Temperatures();
 	
-	protected Amount<Pressure> altimeter = null;
-	
-	protected Amount<Pressure> seaLevelPressure = null;
+	protected Pressures pressures = new Pressures();
 
 	
 	public Station getObservingStation() {
@@ -101,20 +94,12 @@ public class Observation {
 		this.temperatures = temperatures;
 	}
 
-	public Amount<Pressure> getAltimeter() {
-		return altimeter;
+	public Pressures getPressures() {
+		return pressures;
 	}
 
-	public void setAltimeter(Amount<Pressure> altimeter) {
-		this.altimeter = altimeter;
-	}
-
-	public Amount<Pressure> getSeaLevelPressure() {
-		return seaLevelPressure;
-	}
-
-	public void setSeaLevelPressure(Amount<Pressure> seaLevelPressure) {
-		this.seaLevelPressure = seaLevelPressure;
+	public void setPressures(Pressures pressures) {
+		this.pressures = pressures;
 	}
 
 	@Override
@@ -127,8 +112,7 @@ public class Observation {
 			.append("Visibility", this.getVisibility())
 			.append("Sky Condition", this.getSkyCondition())
 			.append("Temperatures", this.getTemperatures())
-			.append("Altimeter", this.getAltimeter().doubleValue(NonSI.INCH_OF_MERCURY))
-			.append("Sea Level Pressure", this.getSeaLevelPressure().doubleValue(SI.MILLI(NonSI.BAR)))
+			.append("Pressures", this.getPressures())
 			.toString();
 	}
 	

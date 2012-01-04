@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.StationIdentificationParser;
@@ -38,18 +37,8 @@ public class StationIdentificationParserTest extends
 
 	@Test
 	public void correct_station_is_identified_by_the_encoded_icao_element(){
-		
-		
-		EncodedWxStringParseContext context = this.createContext("KNFG METAR 251255Z");
-		
-		try {
 			
-			getParser().performParse(context);
-			
-		} catch (EncodedWxElementParseException e) {
-			
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse("KNFG METAR 251255Z");
 		
 		assertNotNull(context.getObservation().getObservingStation());
 		assertEquals("KNFG", context.getObservation().getObservingStation().getIcaoStationIdentifier());

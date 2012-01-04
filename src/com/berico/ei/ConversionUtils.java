@@ -3,12 +3,14 @@ package com.berico.ei;
 import javax.measure.Measurable;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
+import javax.measure.quantity.Pressure;
 import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Velocity;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
 import org.jscience.geography.coordinates.Height;
+import org.jscience.physics.amount.Amount;
 
 public class ConversionUtils {
 
@@ -82,4 +84,17 @@ public class ConversionUtils {
 		return angle.longValue(SI.RADIAN);
 	}
 	
+	public static double toInHg(Measurable<Pressure> pressure){
+		if(pressure == null) { return Double.MIN_VALUE; }
+		return pressure.doubleValue(NonSI.INCH_OF_MERCURY);
+	}
+	
+	public static double toMb(Measurable<Pressure> pressure){
+		if(pressure == null) { return Double.MIN_VALUE; }
+		return pressure.doubleValue(SI.MILLI(NonSI.BAR));
+	}
+	
+	public static Measurable<Temperature> fromC(double temp){
+		return Amount.valueOf(temp, SI.CELSIUS);
+	}
 }

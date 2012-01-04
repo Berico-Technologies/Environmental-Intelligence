@@ -1,12 +1,13 @@
 package com.berico.ei.parsers.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import javax.measure.unit.NonSI;
 
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.WindsParser;
@@ -71,16 +72,7 @@ public class WindsParserTest extends EncodedWxElementParserBaseTestCase {
 	
 	public void assertWindConditions(int expectedDirection, int expectedSpeed, int expectedGusts, boolean shouldBeVariable, String encodedWindString){
 		
-		EncodedWxStringParseContext context = this.createContext(encodedWindString);
-		
-		try {
-			
-			getParser().performParse(context);
-		
-		} catch (EncodedWxElementParseException e) {
-			
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse(encodedWindString);
 		
 		if(shouldBeVariable){
 			

@@ -2,6 +2,9 @@ package com.berico.ei.parsers.tests;
 
 import org.junit.Before;
 
+import static org.junit.Assert.*;
+
+import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 
@@ -48,6 +51,22 @@ public abstract class EncodedWxElementParserBaseTestCase {
 				
 				context.moveToNextElement();
 			}
+		}
+		
+		return context;
+	}
+	
+	public EncodedWxStringParseContext assertParse(String encodedElement){
+		
+		EncodedWxStringParseContext context = createContext(encodedElement);
+		
+		try {
+			
+			getParser().performParse(context);
+			
+		} catch (EncodedWxElementParseException e) {
+			
+			fail(e.getMessage());
 		}
 		
 		return context;

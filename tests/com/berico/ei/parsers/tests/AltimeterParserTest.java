@@ -3,14 +3,12 @@ package com.berico.ei.parsers.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import javax.measure.unit.NonSI;
 
 import org.junit.Test;
 
 import com.berico.ei.parsers.AltimeterParser;
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 
@@ -43,20 +41,12 @@ public class AltimeterParserTest extends EncodedWxElementParserBaseTestCase {
 
 	public void assertAltimeter(double expected, String encodedAltimeter){
 		
-		EncodedWxStringParseContext context = new EncodedWxStringParseContext(encodedAltimeter);
-		
-		try {
-			
-			getParser().performParse(context);
-			
-		} catch (EncodedWxElementParseException e) {
-
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse(encodedAltimeter);
 		
 		assertEquals(expected, 
 			context
 				.getObservation()
+				.getPressures()
 				.getAltimeter()
 				.doubleValue(NonSI.INCH_OF_MERCURY), 0.01d);
 	}

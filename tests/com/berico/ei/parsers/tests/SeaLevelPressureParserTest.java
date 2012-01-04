@@ -7,7 +7,6 @@ import javax.measure.unit.SI;
 
 import org.junit.Test;
 
-import com.berico.ei.parsers.EncodedWxElementParseException;
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
 import com.berico.ei.parsers.SeaLevelPressureParser;
@@ -43,19 +42,11 @@ public class SeaLevelPressureParserTest extends
 	
 	public void assertSeaLevelPressure(double expectedSlp, String encodedSlp){
 		
-		EncodedWxStringParseContext context = createContext(encodedSlp);
-		
-		try {
-			
-			getParser().performParse(context);
-			
-		} catch (EncodedWxElementParseException e) {
-
-			fail(e.getMessage());
-		}
+		EncodedWxStringParseContext context = assertParse(encodedSlp);
 		
 		assertEquals(expectedSlp, 
 				context.getObservation()
+					.getPressures()
 					.getSeaLevelPressure()
 					.doubleValue(
 						SI.MILLI(NonSI.BAR)), 0.1d);

@@ -10,7 +10,7 @@ import static com.berico.ei.ConversionUtils.*;
 
 public class Temperatures {
 
-	protected Measurable<Temperature> observedTemperature = null;
+	protected Measurable<Temperature> ambientTemperature = null;
 	
 	protected Measurable<Temperature> maximumTemperature = null;
 	
@@ -21,11 +21,11 @@ public class Temperatures {
 	protected double relativeHumidity = Double.MIN_VALUE;
 
 	public Measurable<Temperature> getAmbientAirTemperature() {
-		return observedTemperature;
+		return ambientTemperature;
 	}
 
-	public void setObservedTemperature(Measurable<Temperature> observedTemperature) {
-		this.observedTemperature = observedTemperature;
+	public void setAmbientTemperature(Measurable<Temperature> ambientTemperature) {
+		this.ambientTemperature = ambientTemperature;
 	}
 
 	public Measurable<Temperature> getMaximumTemperature() {
@@ -63,7 +63,7 @@ public class Temperatures {
 	public String toString(){
 		
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-			.append("Air Temperature", toC(this.observedTemperature))
+			.append("Air Temperature", toC(this.ambientTemperature))
 			.append("Dewpoint", toC(this.dewpoint))
 			.append("Max Temp", toC(this.maximumTemperature))
 			.append("Min Temp", toC(this.minimumTemperature))
