@@ -15,6 +15,10 @@ public class Precipitation {
 	protected Measurable<Length> threeOrSixHourPrecipitation = null;
 	
 	protected Measurable<Length> twentyFourHourPrecipitation = null;
+	
+	protected Measurable<Length> snowDepthOnGround = null;
+	
+	protected Measurable<Length> liquidEquivalentOfSnowOnGround = null;
 
 	public Measurable<Length> getHourlyPrecipitation() {
 		return hourlyPrecipitation;
@@ -28,7 +32,7 @@ public class Precipitation {
 		return threeOrSixHourPrecipitation;
 	}
 
-	public void setThreeHourPrecipitation(Measurable<Length> threeOrSixHourPrecipitation) {
+	public void setThreeOrSixHourPrecipitation(Measurable<Length> threeOrSixHourPrecipitation) {
 		this.threeOrSixHourPrecipitation = threeOrSixHourPrecipitation;
 	}
 
@@ -41,12 +45,31 @@ public class Precipitation {
 		this.twentyFourHourPrecipitation = twentyFourHourPrecipitation;
 	}
 	
+	public Measurable<Length> getSnowDepthOnGround() {
+		return snowDepthOnGround;
+	}
+
+	public void setSnowDepthOnGround(Measurable<Length> snowDepthOnGround) {
+		this.snowDepthOnGround = snowDepthOnGround;
+	}
+
+	public Measurable<Length> getLiquidEquivalentOfSnowOnGround() {
+		return liquidEquivalentOfSnowOnGround;
+	}
+
+	public void setLiquidEquivalentOfSnowOnGround(
+			Measurable<Length> liquidEquivalentOfSnowOnGround) {
+		this.liquidEquivalentOfSnowOnGround = liquidEquivalentOfSnowOnGround;
+	}
+
 	public String toString(){
 		
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
 			.append("Hourly", toIn(getHourlyPrecipitation()))
 			.append("3/6 Hour", toIn(getThreeOrSixHourPrecipitation()))
 			.append("24 Hour", toIn(getTwentyFourHourPrecipitation()))
+			.append("Snow Depth", toIn(getSnowDepthOnGround()))
+			.append("Liquid Equivalent of Snow on Ground", toIn(getLiquidEquivalentOfSnowOnGround()))
 			.toString();
 	}
 	

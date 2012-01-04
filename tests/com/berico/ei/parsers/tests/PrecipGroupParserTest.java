@@ -21,29 +21,27 @@ public class PrecipGroupParserTest extends EncodedWxElementParserBaseTestCase {
 	@Test
 	public void parser_correctly_identifies_hourly_precip_group(){
 		
-		assertTrue(getParser().canParseCurrentElement(createContext("P0123")));
+		assertCanParse("P0123");
 	}
 
 	@Test
 	public void parser_correctly_identifies_three_and_six_hour_precip_group(){
 		
-		assertTrue(getParser().canParseCurrentElement(createContext("60001")));
+		assertCanParse("60001");
 	}
 	
 	@Test
 	public void parser_correctly_identifies_twenty_four_hour_precip_group(){
 		
-		assertTrue(getParser().canParseCurrentElement(createContext("70430")));
+		assertCanParse("70430");
 	}
 	
 	@Test 
 	public void parser_ignores_incorrect_groups(){
 		
-		assertFalse(getParser().canParseCurrentElement(createContext("SLP0123")));
-		
-		assertFalse(getParser().canParseCurrentElement(createContext("121901Z")));
-		
-		assertFalse(getParser().canParseCurrentElement(createContext("4/123")));
+		assertCannotParse("SLP0123");
+		assertCannotParse("121901Z");
+		assertCannotParse("4/123");
 	}
 	
 	public void assertPrecip(double expectedPrecip, int hourlyType, String element){

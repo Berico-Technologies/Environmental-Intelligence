@@ -25,45 +25,14 @@ public class PrevailingVisibilityParserTest extends
 	@Test
 	public void parser_correctly_detects_visibility_elements_in_an_encoded_string() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-						this.createContext("10SM")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("7SM")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("9999")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("5000")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("0010")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("2 1/2SM")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("5/8SM")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("1/16SM")));
+		assertCanParse("10SM");
+		assertCanParse("7SM");
+		assertCanParse("9999");
+		assertCanParse("5000");
+		assertCanParse("0010");
+		assertCanParse("2 1/2SM");
+		assertCanParse("5/8SM");
+		assertCanParse("1/16SM");
 	}
 
 	public void assertVisibilityConditions(

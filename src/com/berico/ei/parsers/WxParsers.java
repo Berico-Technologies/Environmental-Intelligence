@@ -19,10 +19,14 @@ public class WxParsers {
 			public void handleElement(EncodedWxStringParseContext context) {
 				
 				for(EncodedWxElementParser parser : metarParserChain){
+					
 					if(parser.canParseCurrentElement(context)){
+						
 						try { 
 							parser.performParse(context);
+							
 						} catch (EncodedWxElementParseException ex){
+							
 							ex.printStackTrace();
 						}
 					}
@@ -47,8 +51,13 @@ public class WxParsers {
 		parserChain.add(new AltimeterParser());
 		parserChain.add(new SeaLevelPressureParser());
 		parserChain.add(new TemperatureAndDewpointGroupParser());
-		parserChain.add(new MaxAndMinTemperatureGroupParser());
+		parserChain.add(new ThreeSixHourMaxMinTemperatureParser());
+		parserChain.add(new TwentyFourHourMaxMinTemperatureParser());
 		parserChain.add(new PrecipGroupParser());
+		parserChain.add(new SnowDepthGroupParser());
+		parserChain.add(new LiquidEquivalentOfSnowGroupParser());
+		parserChain.add(new CloudClassificationGroupParser());
+		parserChain.add(new PressureTendencyGroupParser());
 		
 		return parserChain;
 	}

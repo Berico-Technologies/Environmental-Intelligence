@@ -1,8 +1,6 @@
 package com.berico.ei.parsers.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import javax.measure.unit.NonSI;
 
@@ -23,20 +21,9 @@ public class AltimeterParserTest extends EncodedWxElementParserBaseTestCase {
 	@Test
 	public void parser_properly_recognizes_an_altimeter_element() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					this.createContext("A2992")));
-		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					this.createContext("A3001")));
-		
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					this.createContext("METAR")));
+		assertCanParse("A2992");	
+		assertCanParse("A3001");
+		assertCannotParse("METAR");
 	}
 
 	public void assertAltimeter(double expected, String encodedAltimeter){

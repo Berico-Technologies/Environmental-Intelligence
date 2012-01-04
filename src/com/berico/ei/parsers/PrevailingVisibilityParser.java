@@ -19,7 +19,7 @@ public class PrevailingVisibilityParser implements EncodedWxElementParser {
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		
-		if(context.getCurrentElement().matches(PREVAILING_VISIBILITY_METERS)){
+		if(context.getCurrentElement().matches(PREVAILING_VISIBILITY_METERS_PATTERN)){
 			
 			try {
 			
@@ -35,7 +35,7 @@ public class PrevailingVisibilityParser implements EncodedWxElementParser {
 				ex.printStackTrace();
 			}
 		}
-		else if (context.getCurrentElement().matches(PREVAILING_VISIBILITY_MILES)){
+		else if (context.getCurrentElement().matches(PREVAILING_VISIBILITY_MILES_PATTERN)){
 			
 			double visibilityMiles = parseVisibilityInMiles(context.getCurrentElement());
 			

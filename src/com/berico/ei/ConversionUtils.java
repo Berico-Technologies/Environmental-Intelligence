@@ -106,4 +106,8 @@ public class ConversionUtils {
 	public static Measurable<Temperature> fromC(double temp){
 		return Amount.valueOf(temp, SI.CELSIUS);
 	}
+	
+	public static Measurable<Pressure> fromMb(double pressure){
+		return Amount.valueOf(pressure, SI.MILLI(NonSI.BAR));
+	}
 }

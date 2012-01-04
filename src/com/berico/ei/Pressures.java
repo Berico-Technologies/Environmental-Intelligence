@@ -14,6 +14,8 @@ public class Pressures {
 	
 	protected Measurable<Pressure> altimeter = null;
 
+	protected PressureTendency pressureTendency = null;
+	
 	public Measurable<Pressure> getSeaLevelPressure() {
 		return seaLevelPressure;
 	}
@@ -30,11 +32,20 @@ public class Pressures {
 		this.altimeter = altimeter;
 	}
 	
+	public PressureTendency getPressureTendency() {
+		return pressureTendency;
+	}
+
+	public void setPressureTendency(PressureTendency pressureTendency) {
+		this.pressureTendency = pressureTendency;
+	}
+
 	public String toString(){
 		
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
 			.append("Altimeter Setting", toInHg(getAltimeter()))
 			.append("Sea Level Pressure", toMb(getSeaLevelPressure()))
+			.append("3 Hour Pressure Tendency", getPressureTendency())
 			.toString();
 	}
 	

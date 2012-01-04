@@ -22,34 +22,14 @@ public class ObservationTimeParserTest extends
 	@Test
 	public void ensure_the_parser_knows_elements_it_can_correctly_parse()  {
 		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						this.createContext("251223Z")));
-		
+		assertCanParse("251223Z");
 		//Day of Month Invalid
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						this.createContext("321223Z")));
-		
+		assertCannotParse("321223Z");
 		//Hour of Day Invalid
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						this.createContext("122423Z")));
-
+		assertCannotParse("122423Z");
 		//Minutes of Hour Invalid
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						this.createContext("122361Z")));
-				
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						this.createContext("NON PARSEABLE STRING")));
-		
+		assertCannotParse("122361Z");
+		assertCannotParse("NON PARSEABLE STRING");
 	}
 	
 	@Test

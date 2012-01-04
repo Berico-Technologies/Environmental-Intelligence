@@ -16,12 +16,12 @@ public class TemperatureAndDewpointGroupParser implements EncodedWxElementParser
 	public void performParse(EncodedWxStringParseContext context)
 			throws EncodedWxElementParseException {
 		
-		double temperature = parseEncodedTemperture(
+		double temperature = parseEncodedTemperature(
 				context
 					.getCurrentElement()
 					.substring(1, 5));
 		
-		double dewpoint = parseEncodedTemperture(
+		double dewpoint = parseEncodedTemperature(
 				context
 					.getCurrentElement()
 					.substring(5));

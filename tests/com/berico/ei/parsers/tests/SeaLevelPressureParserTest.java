@@ -23,20 +23,9 @@ public class SeaLevelPressureParserTest extends
 	@Test
 	public void parser_correctly_identifies_an_encoded_slp_element() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("SLP092")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("SLP892")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("SLPX")));
+		assertCanParse("SLP092");
+		assertCanParse("SLP892");
+		assertCannotParse("SLPX");
 	}
 
 	

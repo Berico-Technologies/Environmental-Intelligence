@@ -1,9 +1,7 @@
 package com.berico.ei.parsers.tests;
 
 import static com.berico.ei.ConversionUtils.toC;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -23,30 +21,11 @@ public class TemperatureAndDewpointParserTest extends
 	@Test
 	public void temperature_and_dewpoint_element_is_correctly_identified_by_parser(){
 		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("10/01")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("10/M01")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("M10/M11")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("1010")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("M123")));
+		assertCanParse("10/01");
+		assertCanParse("10/M01");
+		assertCanParse("M10/M11");
+		assertCannotParse("1010");
+		assertCannotParse("M123");
 	}
 	
 	public void assertTempAndDewpoint(double expectedTemp, double expectedDewpoint, String encodedElement){

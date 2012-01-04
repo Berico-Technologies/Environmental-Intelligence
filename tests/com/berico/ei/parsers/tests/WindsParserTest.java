@@ -23,50 +23,15 @@ public class WindsParserTest extends EncodedWxElementParserBaseTestCase {
 	@Test
 	public void ensure_the_parser_knows_elements_it_can_correctly_parse(){
 		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("21010KT")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("VRB06KT")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("21010G20KT")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("210100KT")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("21010G100KT")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("210110G130KT")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("VRB10KT")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("VRB07KT")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-							this.createContext("METAR")));
+		assertCanParse("21010KT");
+		assertCanParse("VRB06KT");
+		assertCanParse("21010G20KT");
+		assertCanParse("210100KT");
+		assertCanParse("21010G100KT");
+		assertCanParse("210110G130KT");
+		assertCannotParse("VRB10KT");
+		assertCannotParse("VRB07KT");
+		assertCannotParse("METAR");
 	}
 
 	

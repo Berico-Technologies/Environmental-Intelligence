@@ -17,6 +17,8 @@ public class SkyCondition {
 	
 	protected Map<Long, CloudLayer> skyCondition = new TreeMap<Long, CloudLayer>();
 	
+	protected CloudEtages etages = new CloudEtages();
+	
 	public void addLayer(CloudLayer layer){
 		
 		if(SkyCoverage.isCeilingCoverage(layer.getCoverage())){
@@ -60,6 +62,14 @@ public class SkyCondition {
 	
 	protected void setCeiling(CloudLayer layer){
 		this.ceiling = layer;
+	}
+	
+	public CloudEtages getEtages() {
+		return etages;
+	}
+
+	public void setEtages(CloudEtages etages) {
+		this.etages = etages;
 	}
 
 	@Override

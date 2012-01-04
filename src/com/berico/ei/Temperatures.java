@@ -12,9 +12,13 @@ public class Temperatures {
 
 	protected Measurable<Temperature> ambientTemperature = null;
 	
-	protected Measurable<Temperature> maximumTemperature = null;
+	protected Measurable<Temperature> threeOrSixHourMaximumTemperature = null;
 	
-	protected Measurable<Temperature> minimumTemperature = null;
+	protected Measurable<Temperature> threeOrSixHourMinimumTemperature = null;
+	
+	protected Measurable<Temperature> twentyFourHourMaximumTemperature = null;
+	
+	protected Measurable<Temperature> twentyFourHourMinimumTemperature = null;
 	
 	protected Measurable<Temperature> dewpoint = null;
 	
@@ -28,20 +32,38 @@ public class Temperatures {
 		this.ambientTemperature = ambientTemperature;
 	}
 
-	public Measurable<Temperature> getMaximumTemperature() {
-		return maximumTemperature;
+	public Measurable<Temperature> getThreeOrSixHourMaximumTemperature() {
+		return threeOrSixHourMaximumTemperature;
 	}
 
-	public void setMaximumTemperature(Measurable<Temperature> maximumTemperature) {
-		this.maximumTemperature = maximumTemperature;
+	public void setThreeOrSixHourMaximumTemperature(Measurable<Temperature> maximumTemperature) {
+		this.threeOrSixHourMaximumTemperature = maximumTemperature;
 	}
 
-	public Measurable<Temperature> getMinimumTemperature() {
-		return minimumTemperature;
+	public Measurable<Temperature> getThreeOrSixHourMinimumTemperature() {
+		return threeOrSixHourMinimumTemperature;
 	}
 
-	public void setMinimumTemperature(Measurable<Temperature> minimumTemperature) {
-		this.minimumTemperature = minimumTemperature;
+	public void setThreeOrSixHourMinimumTemperature(Measurable<Temperature> minimumTemperature) {
+		this.threeOrSixHourMinimumTemperature = minimumTemperature;
+	}
+	
+	public Measurable<Temperature> getTwentyFourHourMaximumTemperature() {
+		return twentyFourHourMaximumTemperature;
+	}
+
+	public void setTwentyFourHourMaximumTemperature(
+			Measurable<Temperature> twentyFourHourMaximumTemperature) {
+		this.twentyFourHourMaximumTemperature = twentyFourHourMaximumTemperature;
+	}
+
+	public Measurable<Temperature> getTwentyFourHourMinimumTemperature() {
+		return twentyFourHourMinimumTemperature;
+	}
+
+	public void setTwentyFourHourMinimumTemperature(
+			Measurable<Temperature> twentyFourHourMinimumTemperature) {
+		this.twentyFourHourMinimumTemperature = twentyFourHourMinimumTemperature;
 	}
 
 	public Measurable<Temperature> getDewpoint() {
@@ -63,10 +85,12 @@ public class Temperatures {
 	public String toString(){
 		
 		return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-			.append("Air Temperature", toC(this.ambientTemperature))
-			.append("Dewpoint", toC(this.dewpoint))
-			.append("Max Temp", toC(this.maximumTemperature))
-			.append("Min Temp", toC(this.minimumTemperature))
+			.append("Air Temperature", toC(getAmbientAirTemperature()))
+			.append("Dewpoint", toC(getDewpoint()))
+			.append("3/6 Hour Max Temp", toC(getThreeOrSixHourMaximumTemperature()))
+			.append("3/6 Hour Min Temp", toC(getThreeOrSixHourMinimumTemperature()))
+			.append("24 Hour Max Temp", toC(getTwentyFourHourMaximumTemperature()))
+			.append("24 Hour Min Temp", toC(getTwentyFourHourMinimumTemperature()))
 			.toString();
 	}
 	

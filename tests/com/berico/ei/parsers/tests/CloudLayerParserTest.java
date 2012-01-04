@@ -1,9 +1,6 @@
 package com.berico.ei.parsers.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,65 +31,18 @@ public class CloudLayerParserTest extends EncodedWxElementParserBaseTestCase {
 	@Test
 	public void parser_correctly_identified_cloud_layer_elements() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("SKC")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("CLR")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("FEW010")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("SCT002")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("BKN200")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("OVC120")));
-		
-		assertTrue(
-				getParser()
-					.canParseCurrentElement(
-						createContext("VV001")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("VV010")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("VV100")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("VV010")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("FEWXXX")));
-		
-		assertFalse(
-				getParser()
-					.canParseCurrentElement(
-						createContext("METAR")));
+		assertCanParse("SKC");
+		assertCanParse("CLR");
+		assertCanParse("FEW010");
+		assertCanParse("SCT002");
+		assertCanParse("BKN200");
+		assertCanParse("OVC120");
+		assertCanParse("VV001");
+		assertCannotParse("VV010");
+		assertCannotParse("VV100");
+		assertCannotParse("VV010");
+		assertCannotParse("FEWXXX");
+		assertCannotParse("METAR");
 	}
 
 	

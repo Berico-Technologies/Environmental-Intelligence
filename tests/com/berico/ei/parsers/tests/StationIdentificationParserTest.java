@@ -21,17 +21,9 @@ public class StationIdentificationParserTest extends
 	@Test
 	public void ensure_the_parser_knows_elements_it_can_correctly_parse() {
 		
-		assertTrue(
-				getParser().canParseCurrentElement(
-						this.createContext("KNFG METAR 251255Z")));
-		
-		assertFalse(
-				getParser().canParseCurrentElement(
-						this.createContext("METAR")));
-		
-		assertFalse(
-				getParser().canParseCurrentElement(
-						this.createContext("SPECI")));
+		assertCanParse("KNFG METAR 251255Z");
+		assertCannotParse("METAR");
+		assertCannotParse("SPECI");
 	}
 	
 

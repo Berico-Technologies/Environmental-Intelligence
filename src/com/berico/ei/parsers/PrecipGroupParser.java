@@ -31,7 +31,7 @@ public class PrecipGroupParser implements EncodedWxElementParser {
 			context
 			.getObservation()
 			.getPrecipitation()
-			.setThreeHourPrecipitation(
+			.setThreeOrSixHourPrecipitation(
 				fromIn(precip));
 		}
 		else if(isTwentyFourHourPrecipGroup(context.getCurrentElement())){

@@ -28,17 +28,9 @@ public class ObservationTypeParserTest extends EncodedWxElementParserBaseTestCas
 	@Test
 	public void ensure_the_parser_knows_elements_it_can_correctly_parse() {
 		
-		assertTrue(
-				getParser().canParseCurrentElement(
-					this.createContext(PARSEABLE_METAR)));
-		
-		assertTrue(
-				getParser().canParseCurrentElement(
-						this.createContext(PARSEABLE_SPECI)));
-		
-		assertFalse(
-				getParser().canParseCurrentElement(
-						this.createContext(UNPARSEABLE_METAR)));
+		assertCanParse(PARSEABLE_METAR);
+		assertCanParse(PARSEABLE_SPECI);
+		assertCannotParse(UNPARSEABLE_METAR);
 	}
 
 	public void assertObservationType(ObservationTypes expected, String observationToTest){

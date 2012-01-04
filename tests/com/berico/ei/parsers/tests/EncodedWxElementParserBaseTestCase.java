@@ -56,6 +56,22 @@ public abstract class EncodedWxElementParserBaseTestCase {
 		return context;
 	}
 	
+	public void assertCanParse(String encodedElement){
+		
+		assertTrue(
+				getParser()
+					.canParseCurrentElement(
+						createContext(encodedElement)));
+	}
+	
+	public void assertCannotParse(String encodedElement){
+		
+		assertFalse(
+				getParser()
+					.canParseCurrentElement(
+						createContext(encodedElement)));
+	}
+	
 	public EncodedWxStringParseContext assertParse(String encodedElement){
 		
 		EncodedWxStringParseContext context = createContext(encodedElement);

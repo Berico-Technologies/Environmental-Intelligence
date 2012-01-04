@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.berico.ei.parsers.EncodedWxElementParser;
 import com.berico.ei.parsers.EncodedWxStringParseContext;
-import com.berico.ei.parsers.MaxAndMinTemperatureGroupParser;
+import com.berico.ei.parsers.ThreeSixHourMaxMinTemperatureParser;
 
 import static com.berico.ei.ConversionUtils.*;
 
@@ -16,59 +16,29 @@ public class MaxAndMinTemperatureGroupParserTest extends
 	@Override
 	protected EncodedWxElementParser createParserInstance() {
 		
-		return new MaxAndMinTemperatureGroupParser();
+		return new ThreeSixHourMaxMinTemperatureParser();
 	}
 	
 	@Test
 	public void parser_correctly_detects_maximum_temperature_groups() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("10235")));
-		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("11012")));
-		
+		assertCanParse("10235");
+		assertCanParse("11012");
 		// Invalid number in the second position of the string
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("12235")));
-		
+		assertCannotParse("12235");
 		// See if it trips up on a somewhat similar date/time group
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("110322Z")));
+		assertCannotParse("110322Z");
 	}
 
 	@Test
 	public void parser_correctly_detects_minimum_temperature_groups() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("20102")));
-		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("21045")));
-		
+		assertCanParse("20102");
+		assertCanParse("21045");
 		// Invalid number in the second position of the string
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("22235")));
-		
+		assertCannotParse("22235");	
 		// See if it trips up on a somewhat similar date/time group
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("210322Z")));
+		assertCannotParse("210322Z");
 	}
 	
 	public void assertMaxMinTemperatureGroup(double expectedTemperature, boolean isMaxTemperature, String element){
@@ -77,17 +47,17 @@ public class MaxAndMinTemperatureGroupParserTest extends
 		
 		if(isMaxTemperature){
 			
-			assertNull(context.getObservation().getTemperatures().getMinimumTemperature());
+			assertNull(context.getObservation().getTemperatures().getThreeOrSixHourMinimumTemperature());
 			
 			assertEquals(expectedTemperature, 
-					toC(context.getObservation().getTemperatures().getMaximumTemperature()), 0.01d);
+					toC(context.getObservation().getTemperatures().getThreeOrSixHourMaximumTemperature()), 0.01d);
 			
 		} else {
 			
-			assertNull(context.getObservation().getTemperatures().getMaximumTemperature());
+			assertNull(context.getObservation().getTemperatures().getThreeOrSixHourMaximumTemperature());
 			
 			assertEquals(expectedTemperature, 
-					toC(context.getObservation().getTemperatures().getMinimumTemperature()), 0.01d);
+					toC(context.getObservation().getTemperatures().getThreeOrSixHourMinimumTemperature()), 0.01d);
 		}
 	}
 

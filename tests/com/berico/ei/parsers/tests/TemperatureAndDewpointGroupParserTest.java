@@ -22,30 +22,11 @@ public class TemperatureAndDewpointGroupParserTest extends
 	@Test
 	public void parser_correctly_identifies_temp_and_dewpoint_groups_it_can_parse() {
 		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("T01250020")));
-		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("T01251020")));
-		
-		assertTrue(
-			getParser()
-				.canParseCurrentElement(
-					createContext("T10101020")));
-		
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("TSRA")));
-		
-		assertFalse(
-			getParser()
-				.canParseCurrentElement(
-					createContext("T22221111")));
+		assertCanParse("T01250020");
+		assertCanParse("T01251020");
+		assertCanParse("T10101020");
+		assertCannotParse("TSRA");
+		assertCannotParse("T22221111");
 	}
 
 	public void assertTemperatureAndDewpoint(double expectedTemperature, double expectedDewpoint, String element){
